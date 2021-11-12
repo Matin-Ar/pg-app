@@ -7,14 +7,14 @@ router.get('/:table', async (req, res) => {
         const queryText = `SELECT * from ${req.params.table}`
         pool.query(queryText, async (err, result) => {
             if(err) {
-                res.status(400).send()
+                res.status(400).send(err)
             }
             else {
                 res.send(result.rows)
             }
         })
     } catch(e) {
-        res.status(400).send()
+        res.status(400).send(e)
     }
 })
 
@@ -41,14 +41,14 @@ router.post('/:table', (req, res) => {
         const queryText = `INSERT INTO ${req.params.table} (${keyString}) VALUES (${valueString});`
         pool.query(queryText, (err, result) => {
             if(err) {
-                res.status(400).send()
+                res.status(400).send(err)
             }
             else {
                 res.send()
             }
         })
     } catch(e) {
-        res.status(400).send()
+        res.status(400).send(e)
     }
 })
 
@@ -64,7 +64,7 @@ router.delete('/:table', (req, res) => {
             }
         })
     } catch(e) {
-        res.status(400).send()
+        res.status(400).send(e)
     }
 })
 
@@ -89,14 +89,14 @@ router.patch('/:table', (req, res) => {
         const queryText = `UPDATE ${req.params.table} SET ${myObjectString} WHERE ${Object.keys(req.body)[0]}='${Object.values(req.body)[0]}';`
         pool.query(queryText, (err, result) => {
             if(err) {
-                res.status(400).send()
+                res.status(400).send(err)
             }
             else {
                 res.send()
             }
         })
     } catch(e) {
-        res.status(400).send()
+        res.status(400).send(e)
     }
 })
 
