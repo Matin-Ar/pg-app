@@ -7,7 +7,7 @@ router.get('/:table', async (req, res) => {
         const queryText = `SELECT * from ${req.params.table}`
         pool.query(queryText, async (err, result) => {
             if(err) {
-                throw new Error("error hast ")
+                res.status(400).send()
             }
             else {
                 res.send(result.rows)
