@@ -1,0 +1,24 @@
+delete : 
+
+axios.delete("tablename", {main key and value})
+
+
+
+update:
+axios.patch("tablename", {main key , ...edit})
+
+
+insert:
+axios.post("tablename",{kole etelaat})
+
+
+
+  <img className="editimg" src={EDITLOGO}></img>
+                          <div
+                            onclick={() => {
+                              console.log("clicked");
+                            }}
+                          >
+                            {" "}
+                            <img className="deleteimg" src={DeleteLOGO}></img>
+                          </div>
