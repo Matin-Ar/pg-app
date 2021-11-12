@@ -19,6 +19,11 @@ import "alertifyjs/build/css/alertify.css";
 import EDITLOGO from "./edit.png";
 import DeleteLOGO from "./delete.png";
 
+import { useQuery } from "react-query";
+
+// // Create a client
+// const queryClient = new QueryClient();
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -63,7 +68,7 @@ function App() {
   const [EDITbookPurchasePrice, setEDITbookPurchasePrice] = useState("");
   const [EDITbookPublisher, setEDITbookPublisher] = useState("");
 
-  const [editSellBookCode, setEditSellBookCode] = useState("");
+  const [EditSellBookCode, setEditSellBookCode] = useState("");
   const [EDITsellFactorNum, setEDITSellFactorNum] = useState("");
   const [EDITsellCount, setEDITSellCount] = useState("");
   const [EDITsellSalePrice, setEDITSellSalePrice] = useState("");
@@ -431,7 +436,7 @@ function App() {
   const handleSellEdit = () => {
     axios
       .patch("/api/sell", {
-        book_code: EDITbookBookCode,
+        book_code: EditSellBookCode,
         factor_num: EDITsellFactorNum,
         count: EDITsellCount,
         sale_price: EDITsellSalePrice,
@@ -1541,7 +1546,7 @@ function App() {
                   className="city-input"
                   type="text"
                   placeholder="کد کتاب"
-                  value={editSellBookCode}
+                  value={EditSellBookCode}
                   onChange={(e) => setEditSellBookCode(e.target.value)}
                 />
                 <input
