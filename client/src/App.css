@@ -71,6 +71,16 @@
   background-color: greenyellow;
 }
 
+.cancel-submit {
+  background-color: #f62459;
+  width: 60px;
+  padding: 5px;
+  margin-right: 5px;
+  outline: none;
+  border: none;
+  color: white;
+}
+
 .delete {
   background-color: #f62459;
   outline: none;
@@ -87,6 +97,15 @@
   padding: 3px;
   color: black;
 }
+
+/* .edit-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: greenyellow;
+  min-height: 500px;
+  min-width: 400px;
+} */
 
 .editimg,
 .deleteimg {

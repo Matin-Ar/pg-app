@@ -10,6 +10,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "react-query";
+import Edit from "./Edit";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -18,6 +19,7 @@ ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <App />
+      {/* <Edit selectedMenuItem="city" /> */}
     </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -32,6 +32,59 @@ const style = {
 };
 
 function App() {
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [isEditCityMode, setIsEditCityMode] = useState(false);
+  const [isEditStoreMode, setIsEditStoreMode] = useState(false);
+  const [isEditAvailableMode, setIsEditAvailableMode] = useState(false);
+  const [isEditBookMode, setIsEditBookMode] = useState(false);
+  const [isEditSellMode, setIsEditSellMode] = useState(false);
+  const [isEditFactorMode, setIsEditFactorMode] = useState(false);
+  const [isEditCustomerMode, setIsEditCustomerMode] = useState(false);
+  const [isEditEmployeeMode, setIsEditEmployeeMode] = useState(false);
+
+  const [EditCityName, setEditCityName] = useState("");
+  const [EditCityCode, setEditCityCode] = useState("");
+  const [EditCityProvince, setEditCityProvince] = useState("");
+
+  const [EditstoreCityCode, setEditStoreCityCode] = useState("");
+  const [EditstoreStoreCode, setEditStoreStoreCode] = useState("");
+  const [EditstoreAddress, setEditStoreAddress] = useState("");
+  const [EditstoreTelphone, setEditStoreTelphone] = useState("");
+
+  const [EDITavailableBookCode, setEDITAvailableBookCode] = useState("");
+  const [EDITavailableStoreCode, setEDITAvailableStoreCode] = useState("");
+  const [EDITavailableCount, setEDITAvailableCount] = useState("");
+  const [EDITavailableDescription, setEDITAvailableDescription] = useState("");
+
+  const [EDITbookBookCode, setEDITbookBookCode] = useState("");
+  const [EDITbookTitle, setEDITbookTitle] = useState("");
+  const [EDITbookWriter, setEDITbookWriter] = useState("");
+  const [EDITbookTopic, setEDITbookTopic] = useState("");
+  const [EDITbookPurchasePrice, setEDITbookPurchasePrice] = useState("");
+  const [EDITbookPublisher, setEDITbookPublisher] = useState("");
+
+  const [editSellBookCode, setEditSellBookCode] = useState("");
+  const [EDITsellFactorNum, setEDITSellFactorNum] = useState("");
+  const [EDITsellCount, setEDITSellCount] = useState("");
+  const [EDITsellSalePrice, setEDITSellSalePrice] = useState("");
+
+  const [EDITfactorFactorNum, setEDITFactorFactorNum] = useState("");
+  const [EDITfactorCustomerCode, setEDITFactorCustomerCode] = useState("");
+  const [EDITfactorStoreCode, setEDITFactorStoreCode] = useState("");
+  const [EDITfactorEmployeeCode, setEDITFactorEmployeeCode] = useState("");
+  const [EDITfactorDateFactor, setEDITFactorDateFactor] = useState("");
+
+  const [EditcustomerCustomerCode, setEditCustomerCustomerCode] = useState("");
+  const [EditCustomerCName, setEditCustomerCName] = useState("");
+  const [EditCustomerCphone, setEditCustomerCPhone] = useState("");
+  const [EditCustomerCAddress, setEditCustomerCAddress] = useState("");
+
+  const [EDITemployeeEmployeeCode, setEDITEmployeeEmployeeCode] = useState("");
+  const [EDITemployeeEName, setEDITEmployeeEName] = useState("");
+  const [EDITemployeeEphone, setEDITEmployeeEphone] = useState("");
+  const [EDITemployeeGender, setEDITEmployeeGender] = useState("");
+  const [EDITemployeeStoreCode, setEDITEmployeeStoreCode] = useState("");
+
   const [selectedMenuItem, setSelectedMenuItem] = useState("city");
   const [data, setData] = useState([]);
 
@@ -272,11 +325,182 @@ function App() {
     }
   };
 
-  // const handleEdit = (tablename, mainKey) => {
+  const handleCancelSubmit = () => {
+    setIsEditMode(false);
+    setIsEditCityMode(false);
+    setIsEditStoreMode(false);
+    setIsEditAvailableMode(false);
+    setIsEditBookMode(false);
+    setIsEditSellMode(false);
+    setEditCityName("");
+    setEditCityCode("");
+    setEditCityProvince("");
+    setEditStoreCityCode("");
+    setEditStoreStoreCode("");
+    setEditStoreAddress("");
+    setEditStoreTelphone("");
+    setEDITAvailableBookCode("");
+    setEDITAvailableStoreCode("");
+    setEDITAvailableCount("");
+    setEDITAvailableDescription("");
+    setEDITbookBookCode("");
+    setEDITbookTitle("");
+    setEDITbookWriter("");
+    setEDITbookTopic("");
+    setEDITbookPurchasePrice("");
+    setEDITbookPublisher("");
+    setEditSellBookCode("");
+    setEDITSellFactorNum("");
+    setEDITSellCount("");
+    setEDITSellSalePrice("");
+  };
 
-  //   axios.patch(`/api/${tablename}` , {mainKey , })
+  const handleCityEdit = () => {
+    axios
+      .patch("/api/city", {
+        city_code: EditCityCode,
+        cityname: EditCityName,
+        province: EditCityProvince,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          alertify.success("با موفقیت ادیت شد");
+          handleCancelSubmit();
+        } else {
+          alertify.error("ادیت انجام نشد");
+        }
+      });
+  };
 
-  // }
+  const handleStoreEdit = () => {
+    axios
+      .patch("/api/store", {
+        store_code: EditstoreStoreCode,
+        address: EditstoreAddress,
+        telphone: EditstoreTelphone,
+        city_code: EditstoreCityCode,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          alertify.success("با موفقیت ادیت شد");
+          handleCancelSubmit();
+        } else {
+          alertify.error("ادیت انجام نشد");
+        }
+      });
+  };
+
+  const handleAvailableEdit = () => {
+    axios
+      .patch("/api/available", {
+        store_code: EDITavailableStoreCode,
+        book_code: EDITavailableBookCode,
+        count: EDITavailableCount,
+        description: EDITavailableDescription,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          alertify.success("با موفقیت ادیت شد");
+          handleCancelSubmit();
+        } else {
+          alertify.error("ادیت انجام نشد");
+        }
+      });
+  };
+
+  const handleBookEdit = () => {
+    axios
+      .patch("/api/book", {
+        book_code: EDITbookBookCode,
+        title: EDITbookTitle,
+        writer: EDITbookWriter,
+        topic: EDITbookTopic,
+        purchase_price: EDITbookPurchasePrice,
+        publisher: EDITbookPublisher,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          alertify.success("با موفقیت ادیت شد");
+          handleCancelSubmit();
+        } else {
+          alertify.error("ادیت انجام نشد");
+        }
+      });
+  };
+
+  const handleSellEdit = () => {
+    axios
+      .patch("/api/sell", {
+        book_code: EDITbookBookCode,
+        factor_num: EDITsellFactorNum,
+        count: EDITsellCount,
+        sale_price: EDITsellSalePrice,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          alertify.success("با موفقیت ادیت شد");
+          handleCancelSubmit();
+        } else {
+          alertify.error("ادیت انجام نشد");
+        }
+      });
+  };
+
+  const handleFactorEdit = () => {
+    axios
+      .patch("/api/factor", {
+        factor_num: EDITfactorFactorNum,
+        customer_code: EDITfactorCustomerCode,
+        store_code: EDITfactorStoreCode,
+        employee_code: EDITfactorEmployeeCode,
+        date_factor: EDITfactorDateFactor,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          alertify.success("با موفقیت ادیت شد");
+          handleCancelSubmit();
+        } else {
+          alertify.error("ادیت انجام نشد");
+        }
+      });
+  };
+
+  const handleCustomerEdit = () => {
+    axios
+      .patch("/api/customer", {
+        customer_code: EditcustomerCustomerCode,
+        c_name: EditCustomerCName,
+        c_phone: EditCustomerCphone,
+        c_address: EditCustomerCAddress,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          alertify.success("با موفقیت ادیت شد");
+          handleCancelSubmit();
+        } else {
+          alertify.error("ادیت انجام نشد");
+        }
+      });
+  };
+
+  const handleEmployeeEdit = () => {
+    axios
+      .patch("/api/employee", {
+        employee_code: EDITemployeeEmployeeCode,
+        e_name: EDITemployeeEName,
+        e_phone: EDITemployeeEphone,
+        gender: EDITemployeeGender,
+        store_code: EDITemployeeStoreCode,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          alertify.success("با موفقیت ادیت شد");
+          handleCancelSubmit();
+        } else {
+          alertify.error("ادیت انجام نشد");
+        }
+      });
+  };
 
   return (
     <div className="App">
@@ -333,668 +557,1183 @@ function App() {
             </li>
           </ul>
         </div>
+        {!isEditMode && (
+          <div className="left-box">
+            <div className="left-data-wrapper">
+              {/* //city */}
 
-        <div className="left-box">
-          <div className="left-data-wrapper">
-            {/* //city */}
-
-            {selectedMenuItem === "city" && (
-              <TableContainer>
-                <Table sx={{ minWidth: 500 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align="right">کد شهر</TableCell>
-                      <TableCell align="right">نام شهر</TableCell>
-                      <TableCell align="right">استان</TableCell>
-                      <TableCell align="right">عملیات</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell align="right">{row.city_code}</TableCell>
-                        <TableCell align="right">{row.cityname}</TableCell>
-                        <TableCell align="right">{row.province}</TableCell>
-                        <TableCell align="right">
-                          <button
-                            className="mybtn delete"
-                            onClick={(e) => handleDeletCity(row.city_code)}
-                          >
-                            delete
-                          </button>
-
-                          <button
-                            className="mybtn edit"
-                            onClick={(e) => handleOpen()}
-                          >
-                            edit
-                          </button>
-                        </TableCell>
+              {selectedMenuItem === "city" && (
+                <TableContainer>
+                  <Table sx={{ minWidth: 500 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell align="right">کد شهر</TableCell>
+                        <TableCell align="right">نام شهر</TableCell>
+                        <TableCell align="right">استان</TableCell>
+                        <TableCell align="right">عملیات</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-                <div className="insert-wrapper">
-                  <input
-                    className="city-input"
-                    type="text"
-                    placeholder="کد شهر"
-                    value={cityCityCode}
-                    onChange={(e) => setCityCityCode(e.target.value)}
-                  />
-                  <input
-                    className="city-input"
-                    type="text"
-                    placeholder="نام شهر"
-                    value={cityCityName}
-                    onChange={(e) => setCityCityName(e.target.value)}
-                  />
-                  <input
-                    className="city-input"
-                    type="text"
-                    placeholder="نام استان"
-                    value={cityProvince}
-                    onChange={(e) => setCityProvince(e.target.value)}
-                  />
-                  <button className="city-submit" onClick={handleCitySubmit}>
-                    افزودن
-                  </button>
-                </div>
-              </TableContainer>
-            )}
+                    </TableHead>
+                    <TableBody>
+                      {data.map((row) => (
+                        <TableRow
+                          key={row.name}
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                          }}
+                        >
+                          <TableCell align="right">{row.city_code}</TableCell>
+                          <TableCell align="right">{row.cityname}</TableCell>
+                          <TableCell align="right">{row.province}</TableCell>
+                          <TableCell align="right">
+                            <button
+                              className="mybtn delete"
+                              onClick={(e) => handleDeletCity(row.city_code)}
+                            >
+                              delete
+                            </button>
 
-            {selectedMenuItem === "store" && (
-              <TableContainer>
-                <Table sx={{ minWidth: 500 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align="right">کد فروشگاه</TableCell>
-                      <TableCell align="right">آدرس</TableCell>
-                      <TableCell align="right">شماره تلفن</TableCell>
-                      <TableCell align="right">کد شهر</TableCell>
-                      <TableCell align="right">عملیات</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell align="right">{row.store_code}</TableCell>
+                            <button
+                              className="mybtn edit"
+                              onClick={(e) => {
+                                setIsEditMode(true);
+                                setIsEditCityMode(true);
+                                setEditCityCode(row.city_code);
+                                setEditCityName(row.cityname);
+                                setEditCityProvince(row.province);
+                              }}
+                            >
+                              edit
+                            </button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                  <div className="insert-wrapper">
+                    <input
+                      className="city-input"
+                      type="text"
+                      placeholder="کد شهر"
+                      value={cityCityCode}
+                      onChange={(e) => setCityCityCode(e.target.value)}
+                    />
+                    <input
+                      className="city-input"
+                      type="text"
+                      placeholder="نام شهر"
+                      value={cityCityName}
+                      onChange={(e) => setCityCityName(e.target.value)}
+                    />
+                    <input
+                      className="city-input"
+                      type="text"
+                      placeholder="نام استان"
+                      value={cityProvince}
+                      onChange={(e) => setCityProvince(e.target.value)}
+                    />
+                    <button className="city-submit" onClick={handleCitySubmit}>
+                      افزودن
+                    </button>
+                  </div>
+                </TableContainer>
+              )}
 
-                        <TableCell align="right">{row.address}</TableCell>
-                        <TableCell align="right">{row.telphone}</TableCell>
-                        <TableCell align="right">{row.city_code}</TableCell>
-                        <TableCell align="right">
-                          <button
-                            className="mybtn delete"
-                            onClick={(e) => handleDeleteStore(row.store_code)}
-                          >
-                            delete
-                          </button>
-                        </TableCell>
+              {selectedMenuItem === "store" && (
+                <TableContainer>
+                  <Table sx={{ minWidth: 500 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell align="right">کد فروشگاه</TableCell>
+                        <TableCell align="right">آدرس</TableCell>
+                        <TableCell align="right">شماره تلفن</TableCell>
+                        <TableCell align="right">کد شهر</TableCell>
+                        <TableCell align="right">عملیات</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-                <div className="insert-wrapper">
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="کد شهر"
-                    value={storeCityCode}
-                    onChange={(e) => setStoreCityCode(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="کد فروشگاه"
-                    value={storeStoreCode}
-                    onChange={(e) => setStoreStoreCode(e.target.value)}
-                  />
+                    </TableHead>
+                    <TableBody>
+                      {data.map((row) => (
+                        <TableRow
+                          key={row.name}
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                          }}
+                        >
+                          <TableCell align="right">{row.store_code}</TableCell>
 
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="آدرس"
-                    value={storeAddress}
-                    onChange={(e) => setStoreAddress(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="تلفن"
-                    value={storeTelphone}
-                    onChange={(e) => setStoreTelphone(e.target.value)}
-                  />
-                  <button className="city-submit" onClick={handleStoreSubmit}>
-                    افزودن
-                  </button>
-                </div>
-              </TableContainer>
-            )}
+                          <TableCell align="right">{row.address}</TableCell>
+                          <TableCell align="right">{row.telphone}</TableCell>
+                          <TableCell align="right">{row.city_code}</TableCell>
+                          <TableCell align="right">
+                            <button
+                              className="mybtn delete"
+                              onClick={(e) => handleDeleteStore(row.store_code)}
+                            >
+                              delete
+                            </button>
 
-            {selectedMenuItem === "available" && (
-              <TableContainer>
-                <Table sx={{ minWidth: 500 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align="right">کد فروشگاه</TableCell>
-                      <TableCell align="right">کد کتاب</TableCell>
-                      <TableCell align="right">موجودی</TableCell>
-                      <TableCell align="right">توضیحات</TableCell>
-                      <TableCell align="right">عملیات</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell align="right">{row.store_code}</TableCell>
+                            <button
+                              className="mybtn edit"
+                              onClick={(e) => {
+                                setIsEditMode(true);
+                                setIsEditStoreMode(true);
+                                setEditStoreCityCode(row.city_code);
+                                setEditStoreStoreCode(row.store_code);
+                                setEditStoreAddress(row.address);
+                                setEditStoreTelphone(row.telphone);
+                              }}
+                            >
+                              edit
+                            </button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                  <div className="insert-wrapper">
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="کد شهر"
+                      value={storeCityCode}
+                      onChange={(e) => setStoreCityCode(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="کد فروشگاه"
+                      value={storeStoreCode}
+                      onChange={(e) => setStoreStoreCode(e.target.value)}
+                    />
 
-                        <TableCell align="right">{row.book_code}</TableCell>
-                        <TableCell align="right">{row.count}</TableCell>
-                        <TableCell align="right">{row.description}</TableCell>
-                        <TableCell align="right">
-                          <button
-                            className="mybtn delete"
-                            onClick={(e) =>
-                              handleDeleteAvailable(row.store_code)
-                            }
-                          >
-                            delete
-                          </button>
-                        </TableCell>
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="آدرس"
+                      value={storeAddress}
+                      onChange={(e) => setStoreAddress(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="تلفن"
+                      value={storeTelphone}
+                      onChange={(e) => setStoreTelphone(e.target.value)}
+                    />
+                    <button className="city-submit" onClick={handleStoreSubmit}>
+                      افزودن
+                    </button>
+                  </div>
+                </TableContainer>
+              )}
+
+              {selectedMenuItem === "available" && (
+                <TableContainer>
+                  <Table sx={{ minWidth: 500 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell align="right">کد فروشگاه</TableCell>
+                        <TableCell align="right">کد کتاب</TableCell>
+                        <TableCell align="right">موجودی</TableCell>
+                        <TableCell align="right">توضیحات</TableCell>
+                        <TableCell align="right">عملیات</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-                <div className="insert-wrapper">
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="کد کتاب"
-                    value={availableBookCode}
-                    onChange={(e) => setAvailableBookCode(e.target.value)}
-                  />
+                    </TableHead>
+                    <TableBody>
+                      {data.map((row) => (
+                        <TableRow
+                          key={row.name}
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                          }}
+                        >
+                          <TableCell align="right">{row.store_code}</TableCell>
 
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="کد فروشگاه"
-                    value={availableStoreCode}
-                    onChange={(e) => setAvailableStoreCode(e.target.value)}
-                  />
+                          <TableCell align="right">{row.book_code}</TableCell>
+                          <TableCell align="right">{row.count}</TableCell>
+                          <TableCell align="right">{row.description}</TableCell>
+                          <TableCell align="right">
+                            <button
+                              className="mybtn delete"
+                              onClick={(e) =>
+                                handleDeleteAvailable(row.store_code)
+                              }
+                            >
+                              delete
+                            </button>
 
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="تعداد"
-                    value={availableCount}
-                    onChange={(e) => setAvailableCount(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="توضیحات"
-                    value={availableDescription}
-                    onChange={(e) => setAvailableDescription(e.target.value)}
-                  />
-                  <button
-                    className="city-submit"
-                    onClick={handleAvailableSubmit}
-                  >
-                    افزودن
-                  </button>
-                </div>
-              </TableContainer>
-            )}
+                            <button
+                              className="mybtn edit"
+                              onClick={(e) => {
+                                setIsEditMode(true);
+                                setIsEditAvailableMode(true);
+                                setEDITAvailableBookCode(row.book_code);
+                                setEDITAvailableCount(row.count);
+                                setEDITAvailableStoreCode(row.store_code);
+                                setEDITAvailableDescription(row.description);
+                              }}
+                            >
+                              edit
+                            </button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                  <div className="insert-wrapper">
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="کد کتاب"
+                      value={availableBookCode}
+                      onChange={(e) => setAvailableBookCode(e.target.value)}
+                    />
 
-            {selectedMenuItem === "book" && (
-              <TableContainer>
-                <Table sx={{ minWidth: 500 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align="right">کد کتاب</TableCell>
-                      <TableCell align="right">عنوان</TableCell>
-                      <TableCell align="right">نویسنده</TableCell>
-                      <TableCell align="right">موضوع</TableCell>
-                      <TableCell align="right">ناشر</TableCell>
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="کد فروشگاه"
+                      value={availableStoreCode}
+                      onChange={(e) => setAvailableStoreCode(e.target.value)}
+                    />
 
-                      <TableCell align="right">قیمت خرید</TableCell>
-                      <TableCell align="right">عملیات</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell align="right">{row.book_code}</TableCell>
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="تعداد"
+                      value={availableCount}
+                      onChange={(e) => setAvailableCount(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="توضیحات"
+                      value={availableDescription}
+                      onChange={(e) => setAvailableDescription(e.target.value)}
+                    />
+                    <button
+                      className="city-submit"
+                      onClick={handleAvailableSubmit}
+                    >
+                      افزودن
+                    </button>
+                  </div>
+                </TableContainer>
+              )}
 
-                        <TableCell align="right">{row.title}</TableCell>
-                        <TableCell align="right">{row.writer}</TableCell>
-                        <TableCell align="right">{row.topic}</TableCell>
-                        <TableCell align="right">{row.publisher}</TableCell>
-                        <TableCell align="right">
-                          {row.purchase_price}
-                        </TableCell>
-                        <TableCell align="right">
-                          <button
-                            className="mybtn delete"
-                            onClick={(e) => handleDeleteBook(row.book_code)}
-                          >
-                            delete
-                          </button>
-                        </TableCell>
+              {selectedMenuItem === "book" && (
+                <TableContainer>
+                  <Table sx={{ minWidth: 500 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell align="right">کد کتاب</TableCell>
+                        <TableCell align="right">عنوان</TableCell>
+                        <TableCell align="right">نویسنده</TableCell>
+                        <TableCell align="right">موضوع</TableCell>
+                        <TableCell align="right">ناشر</TableCell>
+
+                        <TableCell align="right">قیمت خرید</TableCell>
+                        <TableCell align="right">عملیات</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHead>
+                    <TableBody>
+                      {data.map((row) => (
+                        <TableRow
+                          key={row.name}
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                          }}
+                        >
+                          <TableCell align="right">{row.book_code}</TableCell>
 
-                <div className="insert-wrapper">
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="کد کتاب"
-                    value={bookBookCode}
-                    onChange={(e) => setbookBookCode(e.target.value)}
-                  />
+                          <TableCell align="right">{row.title}</TableCell>
+                          <TableCell align="right">{row.writer}</TableCell>
+                          <TableCell align="right">{row.topic}</TableCell>
+                          <TableCell align="right">{row.publisher}</TableCell>
+                          <TableCell align="right">
+                            {row.purchase_price}
+                          </TableCell>
+                          <TableCell align="right">
+                            <button
+                              className="mybtn delete"
+                              onClick={(e) => handleDeleteBook(row.book_code)}
+                            >
+                              delete
+                            </button>
 
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="عنوان کتاب"
-                    value={bookTitle}
-                    onChange={(e) => setbookTitle(e.target.value)}
-                  />
+                            <button
+                              className="mybtn edit"
+                              onClick={(e) => {
+                                setIsEditMode(true);
+                                setIsEditBookMode(true);
+                                setEDITbookBookCode(row.book_code);
+                                setEDITbookTitle(row.title);
+                                setEDITbookWriter(row.writer);
+                                setEDITbookTopic(row.topic);
+                                setEDITbookPublisher(row.publisher);
+                                setEDITbookPurchasePrice(row.purchase_price);
+                              }}
+                            >
+                              edit
+                            </button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
 
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="نویسنده"
-                    value={bookWriter}
-                    onChange={(e) => setbookWriter(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="موضوع"
-                    value={bookTopic}
-                    onChange={(e) => setbookTopic(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="قیمت خرید"
-                    value={bookPurchasePrice}
-                    onChange={(e) => setbookPurchasePrice(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="ناشر"
-                    value={bookPublisher}
-                    onChange={(e) => setbookPublisher(e.target.value)}
-                  />
-                  <button className="city-submit" onClick={handleBookSubmit}>
-                    افزودن
-                  </button>
-                </div>
-              </TableContainer>
-            )}
+                  <div className="insert-wrapper">
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="کد کتاب"
+                      value={bookBookCode}
+                      onChange={(e) => setbookBookCode(e.target.value)}
+                    />
 
-            {selectedMenuItem === "sell" && (
-              <TableContainer>
-                <Table sx={{ minWidth: 500 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align="right">کد کتاب</TableCell>
-                      <TableCell align="right">شماره فاکتور</TableCell>
-                      <TableCell align="right">تعداد</TableCell>
-                      <TableCell align="right">قیمت فروش</TableCell>
-                      <TableCell align="right">عملیات</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell align="right">{row.book_code}</TableCell>
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="عنوان کتاب"
+                      value={bookTitle}
+                      onChange={(e) => setbookTitle(e.target.value)}
+                    />
 
-                        <TableCell align="right">{row.factor_num}</TableCell>
-                        <TableCell align="right">{row.count}</TableCell>
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="نویسنده"
+                      value={bookWriter}
+                      onChange={(e) => setbookWriter(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="موضوع"
+                      value={bookTopic}
+                      onChange={(e) => setbookTopic(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="قیمت خرید"
+                      value={bookPurchasePrice}
+                      onChange={(e) => setbookPurchasePrice(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="ناشر"
+                      value={bookPublisher}
+                      onChange={(e) => setbookPublisher(e.target.value)}
+                    />
+                    <button className="city-submit" onClick={handleBookSubmit}>
+                      افزودن
+                    </button>
+                  </div>
+                </TableContainer>
+              )}
 
-                        <TableCell align="right">{row.sale_price}</TableCell>
-                        <TableCell align="right">
-                          <button
-                            className="mybtn delete"
-                            onClick={(e) => handleDeleteSell(row.book_code)}
-                          >
-                            delete
-                          </button>
-                        </TableCell>
+              {selectedMenuItem === "sell" && (
+                <TableContainer>
+                  <Table sx={{ minWidth: 500 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell align="right">کد کتاب</TableCell>
+                        <TableCell align="right">شماره فاکتور</TableCell>
+                        <TableCell align="right">تعداد</TableCell>
+                        <TableCell align="right">قیمت فروش</TableCell>
+                        <TableCell align="right">عملیات</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHead>
+                    <TableBody>
+                      {data.map((row) => (
+                        <TableRow
+                          key={row.name}
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                          }}
+                        >
+                          <TableCell align="right">{row.book_code}</TableCell>
 
-                <div className="insert-wrapper">
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="کد کتاب"
-                    value={sellBookCode}
-                    onChange={(e) => setSellBookCode(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="شماره فاکتور"
-                    value={sellFactorNum}
-                    onChange={(e) => setSellFactorNum(e.target.value)}
-                  />
+                          <TableCell align="right">{row.factor_num}</TableCell>
+                          <TableCell align="right">{row.count}</TableCell>
 
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="تعداد"
-                    value={sellCount}
-                    onChange={(e) => setSellCount(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="قیمت فروش"
-                    value={sellSalePrice}
-                    onChange={(e) => setSellSalePrice(e.target.value)}
-                  />
-                  <button className="city-submit" onClick={handleSellSubmit}>
-                    افزودن
-                  </button>
-                </div>
-              </TableContainer>
-            )}
+                          <TableCell align="right">{row.sale_price}</TableCell>
+                          <TableCell align="right">
+                            <button
+                              className="mybtn delete"
+                              onClick={(e) => handleDeleteSell(row.book_code)}
+                            >
+                              delete
+                            </button>
 
-            {selectedMenuItem === "factor" && (
-              <TableContainer>
-                <Table sx={{ minWidth: 500 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align="right">شماره فاکتور</TableCell>
+                            <button
+                              className="mybtn edit"
+                              onClick={(e) => {
+                                console.log("sell book is ", row.book_code);
+                                setIsEditMode(true);
+                                setIsEditSellMode(true);
+                                setEditSellBookCode(row.book_code);
 
-                      <TableCell align="right">کد مشتری</TableCell>
-                      <TableCell align="right">کد فروشگاه</TableCell>
-                      <TableCell align="right">کد کارمند</TableCell>
+                                setEDITSellFactorNum(row.factor_num);
+                                setEDITSellCount(row.count);
+                                setEDITSellSalePrice(row.sale_price);
+                              }}
+                            >
+                              edit
+                            </button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
 
-                      <TableCell align="right">تاریخ فاکتور</TableCell>
-                      <TableCell align="right">عملیات</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell align="right">{row.factor_num}</TableCell>
+                  <div className="insert-wrapper">
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="کد کتاب"
+                      value={sellBookCode}
+                      onChange={(e) => setSellBookCode(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="شماره فاکتور"
+                      value={sellFactorNum}
+                      onChange={(e) => setSellFactorNum(e.target.value)}
+                    />
 
-                        <TableCell align="right">{row.customer_code}</TableCell>
-                        <TableCell align="right">{row.store_code}</TableCell>
-                        <TableCell align="right">{row.employee_code}</TableCell>
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="تعداد"
+                      value={sellCount}
+                      onChange={(e) => setSellCount(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="قیمت فروش"
+                      value={sellSalePrice}
+                      onChange={(e) => setSellSalePrice(e.target.value)}
+                    />
+                    <button className="city-submit" onClick={handleSellSubmit}>
+                      افزودن
+                    </button>
+                  </div>
+                </TableContainer>
+              )}
 
-                        <TableCell align="right">{row.date_factor}</TableCell>
-                        <TableCell align="right">
-                          <button
-                            className="mybtn delete"
-                            onClick={(e) => handleDeleteFactor(row.factor_num)}
-                          >
-                            delete
-                          </button>
-                        </TableCell>
+              {selectedMenuItem === "factor" && (
+                <TableContainer>
+                  <Table sx={{ minWidth: 500 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell align="right">شماره فاکتور</TableCell>
+
+                        <TableCell align="right">کد مشتری</TableCell>
+                        <TableCell align="right">کد فروشگاه</TableCell>
+                        <TableCell align="right">کد کارمند</TableCell>
+
+                        <TableCell align="right">تاریخ فاکتور</TableCell>
+                        <TableCell align="right">عملیات</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHead>
+                    <TableBody>
+                      {data.map((row) => (
+                        <TableRow
+                          key={row.name}
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                          }}
+                        >
+                          <TableCell align="right">{row.factor_num}</TableCell>
 
-                <div className="insert-wrapper">
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="شماره فاکتور"
-                    value={factorFactorNum}
-                    onChange={(e) => setFactorFactorNum(e.target.value)}
-                  />
+                          <TableCell align="right">
+                            {row.customer_code}
+                          </TableCell>
+                          <TableCell align="right">{row.store_code}</TableCell>
+                          <TableCell align="right">
+                            {row.employee_code}
+                          </TableCell>
 
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="کد مشتری"
-                    value={factorCustomerCode}
-                    onChange={(e) => setFactorCustomerCode(e.target.value)}
-                  />
+                          <TableCell align="right">{row.date_factor}</TableCell>
+                          <TableCell align="right">
+                            <button
+                              className="mybtn delete"
+                              onClick={(e) =>
+                                handleDeleteFactor(row.factor_num)
+                              }
+                            >
+                              delete
+                            </button>
 
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="کد فروشگاه"
-                    value={factorStoreCode}
-                    onChange={(e) => setFactorStoreCode(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="کد فروشنده"
-                    value={factorEmployeeCode}
-                    onChange={(e) => setFactorEmployeeCode(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="تاریخ فاکتور"
-                    value={factorDateFactor}
-                    onChange={(e) => setFactorDateFactor(e.target.value)}
-                  />
+                            <button
+                              className="mybtn edit"
+                              onClick={(e) => {
+                                setIsEditMode(true);
+                                setIsEditFactorMode(true);
+                                setEDITFactorFactorNum(row.factor_num);
+                                setEDITFactorCustomerCode(row.customer_code);
+                                setEDITFactorStoreCode(row.store_code);
+                                setEDITFactorEmployeeCode(row.employee_code);
+                                setEDITFactorDateFactor(row.date_factor);
+                              }}
+                            >
+                              edit
+                            </button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
 
-                  <button className="city-submit" onClick={handleFactorSubmit}>
-                    افزودن
-                  </button>
-                </div>
-              </TableContainer>
-            )}
+                  <div className="insert-wrapper">
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="شماره فاکتور"
+                      value={factorFactorNum}
+                      onChange={(e) => setFactorFactorNum(e.target.value)}
+                    />
 
-            {selectedMenuItem === "customer" && (
-              <TableContainer>
-                <Table sx={{ minWidth: 500 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align="right">کد مشتری</TableCell>
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="کد مشتری"
+                      value={factorCustomerCode}
+                      onChange={(e) => setFactorCustomerCode(e.target.value)}
+                    />
 
-                      <TableCell align="right">نام مشتری</TableCell>
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="کد فروشگاه"
+                      value={factorStoreCode}
+                      onChange={(e) => setFactorStoreCode(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="کد فروشنده"
+                      value={factorEmployeeCode}
+                      onChange={(e) => setFactorEmployeeCode(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="تاریخ فاکتور"
+                      value={factorDateFactor}
+                      onChange={(e) => setFactorDateFactor(e.target.value)}
+                    />
 
-                      <TableCell align="right">شماره همراه مشتری</TableCell>
-                      <TableCell align="right">آدرس مشتری</TableCell>
-                      <TableCell align="right">عملیات</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell align="right">{row.customer_code}</TableCell>
+                    <button
+                      className="city-submit"
+                      onClick={handleFactorSubmit}
+                    >
+                      افزودن
+                    </button>
+                  </div>
+                </TableContainer>
+              )}
 
-                        <TableCell align="right">{row.c_name}</TableCell>
+              {selectedMenuItem === "customer" && (
+                <TableContainer>
+                  <Table sx={{ minWidth: 500 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell align="right">کد مشتری</TableCell>
 
-                        <TableCell align="right">{row.c_phone}</TableCell>
-                        <TableCell align="right">{row.c_address}</TableCell>
-                        <TableCell align="right">
-                          <button
-                            className="mybtn delete"
-                            onClick={(e) =>
-                              handleDeleteCustomer(row.customer_code)
-                            }
-                          >
-                            delete
-                          </button>
-                        </TableCell>
+                        <TableCell align="right">نام مشتری</TableCell>
+
+                        <TableCell align="right">شماره همراه مشتری</TableCell>
+                        <TableCell align="right">آدرس مشتری</TableCell>
+                        <TableCell align="right">عملیات</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHead>
+                    <TableBody>
+                      {data.map((row) => (
+                        <TableRow
+                          key={row.name}
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                          }}
+                        >
+                          <TableCell align="right">
+                            {row.customer_code}
+                          </TableCell>
 
-                <div className="insert-wrapper">
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="کد مشتری"
-                    value={customerCustomerCode}
-                    onChange={(e) => setCustomerCustomerCode(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="نام مشتری"
-                    value={CustomerCName}
-                    onChange={(e) => setCustomerCName(e.target.value)}
-                  />
+                          <TableCell align="right">{row.c_name}</TableCell>
 
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="شماره مشتری"
-                    value={CustomerCphone}
-                    onChange={(e) => setCustomerCPhone(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="آدرس مشتری"
-                    value={CustomerCAddress}
-                    onChange={(e) => setCustomerCAddress(e.target.value)}
-                  />
-                  <button
-                    className="city-submit"
-                    onClick={handleCustomerSubmit}
-                  >
-                    افزودن
-                  </button>
-                </div>
-              </TableContainer>
-            )}
+                          <TableCell align="right">{row.c_phone}</TableCell>
+                          <TableCell align="right">{row.c_address}</TableCell>
+                          <TableCell align="right">
+                            <button
+                              className="mybtn delete"
+                              onClick={(e) =>
+                                handleDeleteCustomer(row.customer_code)
+                              }
+                            >
+                              delete
+                            </button>
 
-            {selectedMenuItem === "employee" && (
-              <TableContainer>
-                <Table sx={{ minWidth: 500 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align="right">کد کارمند</TableCell>
+                            <button
+                              className="mybtn edit"
+                              onClick={(e) => {
+                                setIsEditMode(true);
+                                setIsEditCustomerMode(true);
+                                setEditCustomerCustomerCode(row.customer_code);
+                                setEditCustomerCName(row.c_name);
+                                setEditCustomerCPhone(row.c_phone);
+                                setEditCustomerCAddress(row.c_address);
+                              }}
+                            >
+                              edit
+                            </button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
 
-                      <TableCell align="right">نام کارمند</TableCell>
+                  <div className="insert-wrapper">
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="کد مشتری"
+                      value={customerCustomerCode}
+                      onChange={(e) => setCustomerCustomerCode(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="نام مشتری"
+                      value={CustomerCName}
+                      onChange={(e) => setCustomerCName(e.target.value)}
+                    />
 
-                      <TableCell align="right">شماره همراه کارمند</TableCell>
-                      <TableCell align="right">جنسیت</TableCell>
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="شماره مشتری"
+                      value={CustomerCphone}
+                      onChange={(e) => setCustomerCPhone(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="آدرس مشتری"
+                      value={CustomerCAddress}
+                      onChange={(e) => setCustomerCAddress(e.target.value)}
+                    />
+                    <button
+                      className="city-submit"
+                      onClick={handleCustomerSubmit}
+                    >
+                      افزودن
+                    </button>
+                  </div>
+                </TableContainer>
+              )}
 
-                      <TableCell align="right">کد شعبه</TableCell>
-                      <TableCell align="right">عملیات</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell align="right">{row.employee_code}</TableCell>
+              {selectedMenuItem === "employee" && (
+                <TableContainer>
+                  <Table sx={{ minWidth: 500 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell align="right">کد کارمند</TableCell>
 
-                        <TableCell align="right">{row.e_name}</TableCell>
+                        <TableCell align="right">نام کارمند</TableCell>
 
-                        <TableCell align="right">{row.e_phone}</TableCell>
-                        <TableCell align="right">{row.gender}</TableCell>
+                        <TableCell align="right">شماره همراه کارمند</TableCell>
+                        <TableCell align="right">جنسیت</TableCell>
 
-                        <TableCell align="right">{row.store_code}</TableCell>
-                        <TableCell align="right">
-                          <button
-                            className="mybtn delete"
-                            onClick={(e) =>
-                              handleDeleteEmployee(row.employee_code)
-                            }
-                          >
-                            delete
-                          </button>
-                        </TableCell>
+                        <TableCell align="right">کد شعبه</TableCell>
+                        <TableCell align="right">عملیات</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHead>
+                    <TableBody>
+                      {data.map((row) => (
+                        <TableRow
+                          key={row.name}
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                          }}
+                        >
+                          <TableCell align="right">
+                            {row.employee_code}
+                          </TableCell>
 
-                <div className="insert-wrapper">
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="کد فروشنده"
-                    value={employeeEmployeeCode}
-                    onChange={(e) => setEmployeeEmployeeCode(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="نام فروشنده"
-                    value={employeeEName}
-                    onChange={(e) => setEmployeeEName(e.target.value)}
-                  />
+                          <TableCell align="right">{row.e_name}</TableCell>
 
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="شماره فروشنده"
-                    value={employeeEphone}
-                    onChange={(e) => setEmployeeEphone(e.target.value)}
-                  />
-                  <input
-                    className="store-input"
-                    type="text"
-                    placeholder="جنسیت فروشنده"
-                    value={employeeGender}
-                    onChange={(e) => setEmployeeGender(e.target.value)}
-                  />
-                  <button
-                    className="city-submit"
-                    onClick={handleEmployeeSubmit}
-                  >
-                    افزودن
-                  </button>
-                </div>
-              </TableContainer>
-            )}
+                          <TableCell align="right">{row.e_phone}</TableCell>
+                          <TableCell align="right">{row.gender}</TableCell>
+
+                          <TableCell align="right">{row.store_code}</TableCell>
+                          <TableCell align="right">
+                            <button
+                              className="mybtn delete"
+                              onClick={(e) =>
+                                handleDeleteEmployee(row.employee_code)
+                              }
+                            >
+                              delete
+                            </button>
+
+                            <button
+                              className="mybtn edit"
+                              onClick={(e) => {
+                                setIsEditMode(true);
+                                setIsEditEmployeeMode(true);
+                                setEDITEmployeeEName(row.e_name);
+                                setEDITEmployeeEmployeeCode(row.employee_code);
+                                setEDITEmployeeEphone(row.e_phone);
+                                setEDITEmployeeGender(row.gender);
+                                setEDITEmployeeStoreCode(row.store_code);
+                              }}
+                            >
+                              edit
+                            </button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+
+                  <div className="insert-wrapper">
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="کد فروشنده"
+                      value={employeeEmployeeCode}
+                      onChange={(e) => setEmployeeEmployeeCode(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="نام فروشنده"
+                      value={employeeEName}
+                      onChange={(e) => setEmployeeEName(e.target.value)}
+                    />
+
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="شماره فروشنده"
+                      value={employeeEphone}
+                      onChange={(e) => setEmployeeEphone(e.target.value)}
+                    />
+                    <input
+                      className="store-input"
+                      type="text"
+                      placeholder="جنسیت فروشنده"
+                      value={employeeGender}
+                      onChange={(e) => setEmployeeGender(e.target.value)}
+                    />
+                    <button
+                      className="city-submit"
+                      onClick={handleEmployeeSubmit}
+                    >
+                      افزودن
+                    </button>
+                  </div>
+                </TableContainer>
+              )}
+            </div>
           </div>
-        </div>
+        )}
+
+        {isEditMode && isEditCityMode && (
+          <div className="left-box">
+            <div className="left-data-wrapper">
+              <div className="edit-wrapper">
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد شهر"
+                  value={EditCityCode}
+                  onChange={(e) => setEditCityCode(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="نام شهر"
+                  value={EditCityName}
+                  onChange={(e) => setEditCityName(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="نام استان"
+                  value={EditCityProvince}
+                  onChange={(e) => setEditCityProvince(e.target.value)}
+                />
+                <button className="city-submit" onClick={handleCityEdit}>
+                  افزودن
+                </button>
+
+                <button className="cancel-submit" onClick={handleCancelSubmit}>
+                  انصراف
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isEditMode && isEditStoreMode && (
+          <div className="left-box">
+            <div className="left-data-wrapper">
+              <div className="edit-wrapper">
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد فروشگاه"
+                  value={EditstoreStoreCode}
+                  onChange={(e) => setEditStoreStoreCode(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="آدرس "
+                  value={EditstoreAddress}
+                  onChange={(e) => setEditStoreAddress(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="شماره تلفن"
+                  value={EditstoreTelphone}
+                  onChange={(e) => setEditStoreTelphone(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد شهر"
+                  value={EditstoreCityCode}
+                  onChange={(e) => setEditStoreCityCode(e.target.value)}
+                />
+                <button className="city-submit" onClick={handleStoreEdit}>
+                  افزودن
+                </button>
+
+                <button className="cancel-submit" onClick={handleCancelSubmit}>
+                  انصراف
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isEditMode && isEditAvailableMode && (
+          <div className="left-box">
+            <div className="left-data-wrapper">
+              <div className="edit-wrapper">
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد کتاب"
+                  value={EDITavailableBookCode}
+                  onChange={(e) => setEDITAvailableBookCode(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد فروشگاه"
+                  value={EDITavailableStoreCode}
+                  onChange={(e) => setEDITAvailableStoreCode(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="تعداد"
+                  value={EDITavailableCount}
+                  onChange={(e) => setEDITAvailableCount(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="توضیحات"
+                  value={EDITavailableDescription}
+                  onChange={(e) => setEDITAvailableDescription(e.target.value)}
+                />
+                <button className="city-submit" onClick={handleAvailableEdit}>
+                  افزودن
+                </button>
+
+                <button className="cancel-submit" onClick={handleCancelSubmit}>
+                  انصراف
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isEditMode && isEditBookMode && (
+          <div className="left-box">
+            <div className="left-data-wrapper">
+              <div className="edit-wrapper">
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد کتاب"
+                  value={EDITbookBookCode}
+                  onChange={(e) => setEDITbookBookCode(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="عنوان کتاب"
+                  value={EDITbookTitle}
+                  onChange={(e) => setEDITbookTitle(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="نویسنده"
+                  value={EDITbookWriter}
+                  onChange={(e) => setEDITbookWriter(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="موضوع"
+                  value={EDITbookTopic}
+                  onChange={(e) => setEDITbookTopic(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="قیمت خرید"
+                  value={EDITbookPurchasePrice}
+                  onChange={(e) => setEDITbookPurchasePrice(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="ناشر"
+                  value={EDITbookPublisher}
+                  onChange={(e) => setEDITbookPublisher(e.target.value)}
+                />
+
+                <button className="city-submit" onClick={handleBookEdit}>
+                  افزودن
+                </button>
+
+                <button className="cancel-submit" onClick={handleCancelSubmit}>
+                  انصراف
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isEditMode && isEditSellMode && (
+          <div className="left-box">
+            <div className="left-data-wrapper">
+              <div className="edit-wrapper">
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد کتاب"
+                  value={editSellBookCode}
+                  onChange={(e) => setEditSellBookCode(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="شماره فاکتور"
+                  value={EDITsellFactorNum}
+                  onChange={(e) => setEDITSellFactorNum(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="تعداد"
+                  value={EDITsellCount}
+                  onChange={(e) => setEDITSellCount(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="قیمت فروش"
+                  value={EDITsellSalePrice}
+                  onChange={(e) => setEDITSellSalePrice(e.target.value)}
+                />
+
+                <button className="city-submit" onClick={handleSellEdit}>
+                  افزودن
+                </button>
+
+                <button className="cancel-submit" onClick={handleCancelSubmit}>
+                  انصراف
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isEditMode && isEditFactorMode && (
+          <div className="left-box">
+            <div className="left-data-wrapper">
+              <div className="edit-wrapper">
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="شماره فاکتور"
+                  value={EDITfactorFactorNum}
+                  onChange={(e) => setEDITFactorFactorNum(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد مشتری"
+                  value={EDITfactorCustomerCode}
+                  onChange={(e) => setEDITFactorCustomerCode(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد فروشگاه"
+                  value={EDITfactorStoreCode}
+                  onChange={(e) => setEDITFactorStoreCode(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد کارمند"
+                  value={EDITfactorEmployeeCode}
+                  onChange={(e) => setEDITFactorEmployeeCode(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="تاریخ فاکتور"
+                  value={EDITfactorDateFactor}
+                  onChange={(e) => setEDITFactorDateFactor(e.target.value)}
+                />
+
+                <button className="city-submit" onClick={handleFactorEdit}>
+                  افزودن
+                </button>
+
+                <button className="cancel-submit" onClick={handleCancelSubmit}>
+                  انصراف
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isEditMode && isEditCustomerMode && (
+          <div className="left-box">
+            <div className="left-data-wrapper">
+              <div className="edit-wrapper">
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد مشتری"
+                  value={EditcustomerCustomerCode}
+                  onChange={(e) => setEditCustomerCustomerCode(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="نام مشتری"
+                  value={EditCustomerCName}
+                  onChange={(e) => setEditCustomerCName(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="شماره تلفن"
+                  value={EditCustomerCphone}
+                  onChange={(e) => setEditCustomerCPhone(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="آدرس"
+                  value={EditCustomerCAddress}
+                  onChange={(e) => setEditCustomerCAddress(e.target.value)}
+                />
+
+                <button className="city-submit" onClick={handleCustomerEdit}>
+                  افزودن
+                </button>
+
+                <button className="cancel-submit" onClick={handleCancelSubmit}>
+                  انصراف
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isEditMode && isEditEmployeeMode && (
+          <div className="left-box">
+            <div className="left-data-wrapper">
+              <div className="edit-wrapper">
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد کارمند"
+                  value={EDITemployeeEmployeeCode}
+                  onChange={(e) => setEDITEmployeeEmployeeCode(e.target.value)}
+                />
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="نام کارمند"
+                  value={EDITemployeeEName}
+                  onChange={(e) => setEDITEmployeeEName(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="شماره تلفن"
+                  value={EDITemployeeEphone}
+                  onChange={(e) => setEDITEmployeeEphone(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="جنسیت"
+                  value={EDITemployeeGender}
+                  onChange={(e) => setEDITEmployeeGender(e.target.value)}
+                />
+
+                <input
+                  className="city-input"
+                  type="text"
+                  placeholder="کد فروشگاه"
+                  value={EDITemployeeStoreCode}
+                  onChange={(e) => setEDITEmployeeStoreCode(e.target.value)}
+                />
+
+                <button className="city-submit" onClick={handleEmployeeEdit}>
+                  افزودن
+                </button>
+
+                <button className="cancel-submit" onClick={handleCancelSubmit}>
+                  انصراف
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
