@@ -272,6 +272,12 @@ function App() {
     }
   };
 
+  // const handleEdit = (tablename, mainKey) => {
+
+  //   axios.patch(`/api/${tablename}` , {mainKey , })
+
+  // }
+
   return (
     <div className="App">
       <div className="wrapper">
@@ -329,22 +335,6 @@ function App() {
         </div>
 
         <div className="left-box">
-          <Button onClick={handleOpen}>Open modal</Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Text in a modal
-              </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-              </Typography>
-            </Box>
-          </Modal>
           <div className="left-data-wrapper">
             {/* //city */}
 
@@ -376,6 +366,13 @@ function App() {
                             onClick={(e) => handleDeletCity(row.city_code)}
                           >
                             delete
+                          </button>
+
+                          <button
+                            className="mybtn edit"
+                            onClick={(e) => handleOpen()}
+                          >
+                            edit
                           </button>
                         </TableCell>
                       </TableRow>
@@ -438,6 +435,7 @@ function App() {
                         <TableCell align="right">{row.city_code}</TableCell>
                         <TableCell align="right">
                           <button
+                            className="mybtn delete"
                             onClick={(e) => handleDeleteStore(row.store_code)}
                           >
                             delete
@@ -511,6 +509,7 @@ function App() {
                         <TableCell align="right">{row.description}</TableCell>
                         <TableCell align="right">
                           <button
+                            className="mybtn delete"
                             onClick={(e) =>
                               handleDeleteAvailable(row.store_code)
                             }
@@ -597,6 +596,7 @@ function App() {
                         </TableCell>
                         <TableCell align="right">
                           <button
+                            className="mybtn delete"
                             onClick={(e) => handleDeleteBook(row.book_code)}
                           >
                             delete
@@ -687,6 +687,7 @@ function App() {
                         <TableCell align="right">{row.sale_price}</TableCell>
                         <TableCell align="right">
                           <button
+                            className="mybtn delete"
                             onClick={(e) => handleDeleteSell(row.book_code)}
                           >
                             delete
@@ -766,6 +767,7 @@ function App() {
                         <TableCell align="right">{row.date_factor}</TableCell>
                         <TableCell align="right">
                           <button
+                            className="mybtn delete"
                             onClick={(e) => handleDeleteFactor(row.factor_num)}
                           >
                             delete
@@ -852,6 +854,7 @@ function App() {
                         <TableCell align="right">{row.c_address}</TableCell>
                         <TableCell align="right">
                           <button
+                            className="mybtn delete"
                             onClick={(e) =>
                               handleDeleteCustomer(row.customer_code)
                             }
@@ -938,6 +941,7 @@ function App() {
                         <TableCell align="right">{row.store_code}</TableCell>
                         <TableCell align="right">
                           <button
+                            className="mybtn delete"
                             onClick={(e) =>
                               handleDeleteEmployee(row.employee_code)
                             }

@@ -56,7 +56,8 @@
   height: 70px;
 }
 
-.city-input {
+.city-input,
+.store-input {
   width: 100px;
   margin-left: 10px;
   padding-right: 1em;
@@ -67,6 +68,24 @@
   width: 60px;
   border: none;
   padding: 5px;
+  background-color: greenyellow;
+}
+
+.delete {
+  background-color: #f62459;
+  outline: none;
+  border: none;
+  padding: 3px;
+  color: white;
+}
+
+.edit {
+  margin-right: 10px;
+  background-color: #f4d03f;
+  outline: none;
+  border: none;
+  padding: 3px;
+  color: black;
 }
 
 .editimg,
