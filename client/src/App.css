@@ -41,7 +41,6 @@
   backdrop-filter: saturate(180%) blur(10px);
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
 
@@ -65,7 +64,9 @@
 }
 
 .table-container {
-  max-height: 90%;
+  width: 80%;
+  max-height: 55%;
+  min-height: 450px;
   overflow-y: auto;
 }
 
