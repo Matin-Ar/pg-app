@@ -288,6 +288,7 @@ function App() {
           topic: bookTopic,
           purchase_price: bookPurchasePrice,
           publisher: bookPublisher,
+          writer: bookWriter,
         })
         .then(() => alertify.success("با موفقیت اضافه گردید"))
         .catch((err) => alertify.error(err.response.data.detail));
