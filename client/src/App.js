@@ -384,6 +384,11 @@ function App() {
     setIsEditAvailableMode(false);
     setIsEditBookMode(false);
     setIsEditSellMode(false);
+    
+    setIsEditFactorMode(false);
+    setIsEditCustomerMode(false);
+    setIsEditEmployeeMode(false);
+
     setEditCityName("");
     setEditCityCode("");
     setEditCityProvince("");
