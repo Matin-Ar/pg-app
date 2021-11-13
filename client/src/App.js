@@ -1433,6 +1433,14 @@ function App() {
                         value={employeeEName}
                         onChange={(e) => setEmployeeEName(e.target.value)}
                       />
+                      
+                      <input
+                        className="store-input"
+                        type="text"
+                        placeholder="نام فروشنده"
+                        value={employeeStoreCode}
+                        onChange={(e) => setEmployeeStoreCode(e.target.value)}
+                      />
 
                       <input
                         className="store-input"
