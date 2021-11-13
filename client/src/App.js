@@ -1882,7 +1882,6 @@ function App() {
           )}
         </div>
       </div>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
