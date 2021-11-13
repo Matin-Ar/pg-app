@@ -64,11 +64,17 @@
   height: 25px;
 }
 
+.table-container {
+  max-height: 90%;
+  overflow-y: auto;
+}
+
 .city-submit {
   width: 60px;
   border: none;
   padding: 5px;
   background-color: greenyellow;
+  cursor: pointer;
 }
 
 .cancel-submit {
@@ -79,6 +85,7 @@
   outline: none;
   border: none;
   color: white;
+  cursor: pointer;
 }
 
 .delete {
@@ -87,6 +94,7 @@
   border: none;
   padding: 3px;
   color: white;
+  cursor: pointer;
 }
 
 .edit {
@@ -96,6 +104,7 @@
   border: none;
   padding: 3px;
   color: black;
+  cursor: pointer;
 }
 
 /* .edit-wrapper {
@@ -139,4 +148,8 @@
 .menu-item:hover {
   color: #ff43bb;
   cursor: pointer;
+}
+
+.activemenu {
+  color: #ff43bb;
 }

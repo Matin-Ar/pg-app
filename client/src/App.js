@@ -541,49 +541,65 @@ function App() {
             <ul className="menu-list">
               <li
                 onClick={(e) => setSelectedMenuItem("city")}
-                className="menu-item"
+                className={`menu-item ${
+                  selectedMenuItem === "city" ? "activemenu" : ""
+                }`}
               >
                 کد شهر
               </li>
               <li
                 onClick={(e) => setSelectedMenuItem("store")}
-                className="menu-item"
+                className={`menu-item ${
+                  selectedMenuItem === "store" ? "activemenu" : ""
+                }`}
               >
                 فروشگاه
               </li>
               <li
                 onClick={(e) => setSelectedMenuItem("available")}
-                className="menu-item"
+                className={`menu-item ${
+                  selectedMenuItem === "available" ? "activemenu" : ""
+                }`}
               >
                 موجودی
               </li>
               <li
                 onClick={(e) => setSelectedMenuItem("book")}
-                className="menu-item"
+                className={`menu-item ${
+                  selectedMenuItem === "book" ? "activemenu" : ""
+                }`}
               >
                 کتاب ها
               </li>
               <li
                 onClick={(e) => setSelectedMenuItem("sell")}
-                className="menu-item"
+                className={`menu-item ${
+                  selectedMenuItem === "sell" ? "activemenu" : ""
+                }`}
               >
                 فروش
               </li>
               <li
                 onClick={(e) => setSelectedMenuItem("factor")}
-                className="menu-item"
+                className={`menu-item ${
+                  selectedMenuItem === "factor" ? "activemenu" : ""
+                }`}
               >
                 فاکتور
               </li>
               <li
                 onClick={(e) => setSelectedMenuItem("customer")}
-                className="menu-item"
+                className={`menu-item ${
+                  selectedMenuItem === "customer" ? "activemenu" : ""
+                }`}
               >
                 مشتریان
               </li>
               <li
                 onClick={(e) => setSelectedMenuItem("employee")}
-                className="menu-item"
+                className={`menu-item ${
+                  selectedMenuItem === "employee" ? "activemenu" : ""
+                }`}
               >
                 کارمندان
               </li>
@@ -595,7 +611,7 @@ function App() {
                 {/* //city */}
 
                 {selectedMenuItem === "city" && (
-                  <TableContainer>
+                  <TableContainer className="table-container">
                     <Table sx={{ minWidth: 500 }} aria-label="simple table">
                       <TableHead>
                         <TableRow className={classes.root}>
@@ -674,7 +690,7 @@ function App() {
                 )}
 
                 {selectedMenuItem === "store" && (
-                  <TableContainer>
+                  <TableContainer className="table-container">
                     <Table sx={{ minWidth: 500 }} aria-label="simple table">
                       <TableHead>
                         <TableRow className={classes.root}>
@@ -769,7 +785,7 @@ function App() {
                 )}
 
                 {selectedMenuItem === "available" && (
-                  <TableContainer>
+                  <TableContainer className="table-container">
                     <Table sx={{ minWidth: 500 }} aria-label="simple table">
                       <TableHead>
                         <TableRow className={classes.root}>
@@ -869,7 +885,7 @@ function App() {
                 )}
 
                 {selectedMenuItem === "book" && (
-                  <TableContainer>
+                  <TableContainer className="table-container">
                     <Table sx={{ minWidth: 500 }} aria-label="simple table">
                       <TableHead>
                         <TableRow className={classes.root}>
@@ -985,7 +1001,7 @@ function App() {
                 )}
 
                 {selectedMenuItem === "sell" && (
-                  <TableContainer>
+                  <TableContainer className="table-container">
                     <Table sx={{ minWidth: 500 }} aria-label="simple table">
                       <TableHead>
                         <TableRow className={classes.root}>
@@ -1084,7 +1100,7 @@ function App() {
                 )}
 
                 {selectedMenuItem === "factor" && (
-                  <TableContainer>
+                  <TableContainer className="table-container">
                     <Table sx={{ minWidth: 500 }} aria-label="simple table">
                       <TableHead>
                         <TableRow className={classes.root}>
@@ -1203,7 +1219,7 @@ function App() {
                 )}
 
                 {selectedMenuItem === "customer" && (
-                  <TableContainer>
+                  <TableContainer className="table-container">
                     <Table sx={{ minWidth: 500 }} aria-label="simple table">
                       <TableHead>
                         <TableRow className={classes.root}>
@@ -1306,7 +1322,7 @@ function App() {
                 )}
 
                 {selectedMenuItem === "employee" && (
-                  <TableContainer>
+                  <TableContainer className="table-container">
                     <Table sx={{ minWidth: 500 }} aria-label="simple table">
                       <TableHead>
                         <TableRow className={classes.root}>
