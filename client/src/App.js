@@ -569,7 +569,7 @@ function App() {
                   selectedMenuItem === "city" ? "activemenu" : ""
                 }`}
               >
-                کد شهر
+                شهر
               </li>
               <li
                 onClick={(e) => setSelectedMenuItem("store")}
